@@ -33,4 +33,9 @@ public class UsuarioService {
         user.setPassword(password);
         return user;
     }
+
+    @Transactional(readOnly = true)
+    public List<Usuario> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
 }
