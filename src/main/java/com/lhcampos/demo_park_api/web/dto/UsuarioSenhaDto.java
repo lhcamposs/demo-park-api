@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UsuarioResponseDto {
+public class UsuarioSenhaDto {
 
-    private Long id;
-    private String username;
-    private String role;
+    private String senhaAtual;
+    private String novaSenha;
+    private String confirmaSenha;
 }
