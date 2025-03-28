@@ -1,6 +1,7 @@
 package com.lhcampos.demo_park_api.service;
 
 import com.lhcampos.demo_park_api.entity.Usuario;
+import com.lhcampos.demo_park_api.exception.UsernameUniqueViolationException;
 import com.lhcampos.demo_park_api.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,12 @@ public class UsuarioService {
     @Transactional
     public Usuario salvar(Usuario usuario) {
 
-        return usuarioRepository.save(usuario);
+        try {
+            return usuarioRepository.save(usuario);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            throw new UsernameUniqueViolationException(String
+                    .format("Username {%s} já cadastrado", usuario.getUsername()));
+        }
     }
 
     @Transactional(readOnly = true)
