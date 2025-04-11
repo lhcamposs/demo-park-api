@@ -32,14 +32,14 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @Operation(summary = "Criar um novo usuario", description = "Recurso para criar um novo usuário",
-        responses = {
-            @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
-                @ApiResponse(responseCode = "409", description = "Usuario e-mail já cadastrado no sistema",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                @ApiResponse(responseCode = "422", description = "Recurso não processado por dados de entrada invalidos",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-        }
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
+                    @ApiResponse(responseCode = "409", description = "Usuario e-mail já cadastrado no sistema",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(responseCode = "422", description = "Recurso não processado por dados de entrada invalidos",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            }
     )
     @PostMapping
     public ResponseEntity<UsuarioResponseDto> create(@Valid @RequestBody UsuarioCreateDto createDto) {
@@ -80,7 +80,7 @@ public class UsuarioController {
     @PatchMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENTE') AND (#id == authentication.principal.id)")
     public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody UsuarioSenhaDto dto) {
-        Usuario user = usuarioService.editarSenha(id, dto.getSenhaAtual(), dto.getNovaSenha(),dto.getConfirmaSenha());
+        Usuario user = usuarioService.editarSenha(id, dto.getSenhaAtual(), dto.getNovaSenha(), dto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
 
