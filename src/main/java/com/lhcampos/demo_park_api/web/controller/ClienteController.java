@@ -29,7 +29,7 @@ public class ClienteController {
     private final ClienteService clienteService;
     private final UsuarioService usuarioService;
 
-    @Operation(summary = "Criar um novo cliente", description = "Recurso para criar um novo usuário" +
+    @Operation(summary = "Criar um novo cliente", description = "Recurso para criar um novo cliente" +
             "Requisição exige uso de um bearer token. Acesso restrito a Role='CLIENTE'",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso",
@@ -54,7 +54,19 @@ public class ClienteController {
 
     }
 
-    @GetMapping("/{id")
+    @Operation(summary = "Localizar um cliente", description = "Recurso para localizar um novo cliente" +
+            "Requisição exige uso de um bearer token. Acesso restrito a Role='ADMIN'",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Recurso localizado com sucesso",
+                            content = @Content(mediaType = "application/json;charset=UTF-8", schema = @Schema(implementation = ClienteResponseDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Cliente não encontrado",
+                            content = @Content(mediaType = "application/json;charset=UTF-8", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(responseCode = "403", description = "Recurso não permitido ao perfil de CLIENTE",
+                            content = @Content(mediaType = "application/json;charset=UTF-8", schema = @Schema(implementation = ErrorMessage.class))),
+            }
+    )
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ClienteResponseDto> getById(@PathVariable Long id) {
         Cliente cliente = clienteService.buscarPor(id);
         return ResponseEntity.ok(ClienteMapper.toDto(cliente));
