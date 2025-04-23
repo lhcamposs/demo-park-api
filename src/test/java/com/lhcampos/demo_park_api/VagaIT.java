@@ -1,6 +1,7 @@
 package com.lhcampos.demo_park_api;
 
 import com.lhcampos.demo_park_api.web.dto.VagaCreateDto;
+import com.lhcampos.demo_park_api.web.exception.ErrorMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -76,6 +77,22 @@ public class VagaIT {
     }
 
     @Test
+    public void criarVaga_ComUsuarioCliente_RetornaErrorMessageComStatus403() {
+        testClient
+                .post()
+                .uri("/api/v1/vagas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .headers(JwtAuthentication.getHeaderAuthorization(testClient, "bia@email.com", "123456"))
+                .bodyValue(new VagaCreateDto("A-05", "OCUPADA"))
+                .exchange()
+                .expectStatus().isForbidden()
+                .expectBody()
+                .jsonPath("status").isEqualTo(403)
+                .jsonPath("method").isEqualTo("POST")
+                .jsonPath("path").isEqualTo("/api/v1/vagas");
+    }
+
+    @Test
     public void buscarVaga_ComCodigoExistente_RetornarVagaComStatus200() {
         testClient
                 .get()
@@ -102,4 +119,19 @@ public class VagaIT {
                 .jsonPath("method").isEqualTo("GET")
                 .jsonPath("path").isEqualTo("/api/v1/vagas/A-10");
     }
+
+    @Test
+    public void buscarVaga_ComUsuarioSemPermissaoDeAcesso_RetornaErrorMessageComStatus403() {
+        testClient
+                .get()
+                .uri("/api/v1/vagas/{codigo}", "A-01")
+                .headers(JwtAuthentication.getHeaderAuthorization(testClient, "bia@email.com", "123456"))
+                .exchange()
+                .expectStatus().isForbidden()
+                .expectBody()
+                .jsonPath("status").isEqualTo(403)
+                .jsonPath("method").isEqualTo("GET")
+                .jsonPath("path").isEqualTo("/api/v1/vagas/A-01");
+    }
+
 }
