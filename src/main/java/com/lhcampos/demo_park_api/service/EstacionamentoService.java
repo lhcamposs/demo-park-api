@@ -26,7 +26,7 @@ public class EstacionamentoService {
         Vaga vaga = vagaService.buscarPorVagaLivre();
         vaga.setStatus(Vaga.StatusVaga.OCUPADA);
         clienteVaga.setVaga(vaga);
-        
+
         clienteVaga.setDataEntrada(LocalDateTime.now());
 
         clienteVaga.setRecibo(EstacionamentoUtils.gerarRecibo());

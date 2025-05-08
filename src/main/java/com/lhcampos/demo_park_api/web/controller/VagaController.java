@@ -28,7 +28,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/vagas")
-public class VagasController {
+public class VagaController {
 
     private final VagaService vagaService;
 
