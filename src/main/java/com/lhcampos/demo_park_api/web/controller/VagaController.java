@@ -45,7 +45,7 @@ public class VagaController {
                     @ApiResponse(responseCode = "409", description = "Vaga já cadastrada",
                             content = @Content(mediaType = " application/json;charset=UTF-8",
                                     schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "422", description = "Recurso não processado pro falda de dados ou dados inválidos",
+                    @ApiResponse(responseCode = "422", description = "Recurso não processado pro falta de dados ou dados inválidos",
                             content = @Content(mediaType = " application/json;charset=UTF-8",
                                     schema = @Schema(implementation = ErrorMessage.class))),
             })
