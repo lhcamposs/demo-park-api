@@ -209,7 +209,7 @@ public class ClienteIT {
     }
 
     @Test
-    public void buscarCliente_ComDadosdoTokenDeCliente_RetornarClienteComStatus200() {
+    public void buscarCliente_ComDadosDoTokenDeCliente_RetornarClienteComStatus200() {
         ClienteResponseDto responseBody = testClient
                 .get()
                 .uri("/api/v1/clientes/detalhes")
@@ -226,7 +226,7 @@ public class ClienteIT {
     }
 
     @Test
-    public void buscarCliente_ComDadosdoTokenDeAdmministrador_RetornarErrorMessageComStatus403() {
+    public void buscarCliente_ComDadosDoTokenDeAdministrador_RetornarErrorMessageComStatus403() {
         ErrorMessage responseBody = testClient
                 .get()
                 .uri("/api/v1/clientes/detalhes")
