@@ -2,9 +2,6 @@
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
-
 API para gerenciamento de estacionamentos com sistema de reservas, controle de vagas e autenticação de usuários.
 
 ## 📋 Recursos Principais
@@ -23,9 +20,7 @@ API para gerenciamento de estacionamentos com sistema de reservas, controle de v
 - **Spring Boot 3.2.4**
 - Spring Data JPA
 - Spring Security
-- PostgreSQL
 - JSON Web Tokens (JWT)
-- Gradle
 - Lombok
 - MapStruct
 
@@ -33,8 +28,6 @@ API para gerenciamento de estacionamentos com sistema de reservas, controle de v
 
 ### Pré-requisitos
 - Java 17 JDK
-- PostgreSQL 15+
-- Gradle 7.6+
 - IDE (IntelliJ, Eclipse ou VS Code)
 
 ### Configuração do Banco de Dados
