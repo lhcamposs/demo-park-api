@@ -123,17 +123,20 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── com/
-│   │       └── demo/
-│   │           └── parkapi/
-│   │               ├── config/       # Configurações da aplicação
-│   │               ├── controller/   # Controladores REST
-│   │               ├── exception/    # Tratamento de erros
-│   │               ├── model/        # Entidades JPA
-│   │               ├── repository/   # Repositórios de dados
-│   │               ├── service/      # Lógica de negócio
-│   │               └── web/          # DTOs e mapeamentos
-│   └── resources/                    # Arquivos de configuração
-└── test/                             # Testes automatizados
+│   │       └── demoparkapi/
+│   │           ├── config/                 # Configurações da aplicação
+│   │           ├── exception/              # Tratamento de erros
+│   │           ├── entity/                 # Entidades JPA
+│   │           ├── repository/             # Repositórios de dados
+│   │           ├── service/                # Lógica de negócio
+|   |           ├── jwt/                    # Arquivos de configuração
+|   |           ├── util/                   # Controladores REST
+│   │           └── web/                    # DTOs e mapeamentos
+|   |               ├── controller/         
+|   |               ├── dto/
+|   |               └─ exception/
+│   └── resources/                    
+└── test/                                   # Testes automatizados
 ```
 
 ## 📈 Próximos Passos (Roadmap)
